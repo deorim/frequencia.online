@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Exclusiva - Última Chance!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff7e6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background-color: #ff4500;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4500;
+            font-size: 28px;
+        }
+
+        p {
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .price {
+            font-size: 22px;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #fffae6;
+            border-left: 5px solid #ff4500;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #2ecc71;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #ff4500;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        ÚLTIMA OPORTUNIDADE - Não Feche Esta Página!
+    </div>
+
+    <div class="container">
+        <h1>⚡ Uma Oferta Especial Só Para Você! ⚡</h1>
+
+        <p>
+            Entendemos que você recusou a oferta anterior, mas queremos garantir que você não perca a
+            chance de transformar ainda mais sua vida.
+        </p>
+
+        <div class="highlight">
+            <p>
+                <strong>✨ Por tempo limitado: </strong>
+                Garanta agora seu <em>"Mapa Mental da Abundância e Jornada de Transformação"</em> por apenas
+                <span class="price">R$ 17,00</span>!
+            </p>
+        </div>
+
+        <p>✔ Acredite, esta será a melhor decisão que você tomará hoje!</p>
+
+        <p>⏳ <strong>Mas atenção:</strong> Essa oferta exclusiva desaparece assim que você fechar esta página.
+            Não deixe para depois!
+        </p>
+
+        
+
+        <p class="footer">
+            Apenas <strong>R$ 17,00</strong> por uma transformação extraordinária.<br>
+            Não espere mais! 
+        </p>
+
+        <!-- Checkout - Sales Funnel Widget -->
+                   <div style="text-align:center">
+          <button id="kiwify-upsell-trigger-1yAbOXb" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">SIM, EU QUERO MEU MAPA MENTAL!</button>
+          <br>
+          <br>
+          <button id="kiwify-upsell-cancel-trigger" style="background-color:#FF0000;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #FF0000;font-size:20px;">NÃO, EU NÃO quero ajudar e Nem mudar minha vida.</button>
+
+        </div><script> 
+            let nextUpsellURL = "obrigado.com";
+            let nextDownsellURL = "obrigado.com";</script><script src="https://kiwify-snippets.netlify.app/upsell/upsell.min.js"></script>
+        <!-- Checkout - Sales Funnel Widget -->
+    </div>
+
+        <script>
+        // Função para redirecionar ao tentar sair ou voltar
+        window.history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function () {
+            window.location.href = 'https://obrigado.com/';
+        });
+        window.addEventListener('beforeunload', function (e) {
+            window.location.href = 'https://obrigado.com/';
+        });
+        </script>
+
+</body>
+
+</html>
