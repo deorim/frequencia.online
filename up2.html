@@ -3,10 +3,10 @@
 <html lang="pt">
 <head>
     <!-- Inicio- Acelerador Vturb -->
-<link rel="preload" href="https://scripts.converteai.net/364f5ade-e388-4a33-9cbe-1648a724b950/players/680aea03a19e1f3a2b1f4bfd/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/b690d021-2939-43a7-8d6c-7cf2a2ef89b3/players/6812e2b70d8d82d84cdbc43b/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer/v1/smartplayer.min.js" as="script">
-<link rel="preload" href="https://images.converteai.net/364f5ade-e388-4a33-9cbe-1648a724b950/players/680aea03a19e1f3a2b1f4bfd/thumbnail.jpg" as="image">
-<link rel="preload" href="https://cdn.converteai.net/364f5ade-e388-4a33-9cbe-1648a724b950/680ae9fd1e6cf8003ef36675/main.m3u8" as="fetch">
+<link rel="preload" href="https://images.converteai.net/b690d021-2939-43a7-8d6c-7cf2a2ef89b3/players/6812e2b70d8d82d84cdbc43b/thumbnail.jpg" as="image">
+<link rel="preload" href="https://cdn.converteai.net/b690d021-2939-43a7-8d6c-7cf2a2ef89b3/6812e297ef8f25235a05facc/main.m3u8" as="fetch">
 <link rel="dns-prefetch" href="https://cdn.converteai.net">
 <link rel="dns-prefetch" href="https://scripts.converteai.net">
 <link rel="dns-prefetch" href="https://images.converteai.net">
@@ -59,7 +59,7 @@
         <div class="timer">Enquanto Isso Assista as Instruções do Vídeo Abaixo com Muita Atenção!</div>
 
         <!-- Vídeo Up 2 -->
-        <div id="vid_680aea03a19e1f3a2b1f4bfd" style="position: relative; width: 100%; padding: 56.25% 0 0;"> <img id="thumb_680aea03a19e1f3a2b1f4bfd" src="https://images.converteai.net/364f5ade-e388-4a33-9cbe-1648a724b950/players/680aea03a19e1f3a2b1f4bfd/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> <div id="backdrop_680aea03a19e1f3a2b1f4bfd" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div> </div> <script type="text/javascript" id="scr_680aea03a19e1f3a2b1f4bfd"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/364f5ade-e388-4a33-9cbe-1648a724b950/players/680aea03a19e1f3a2b1f4bfd/player.js", s.async=!0,document.head.appendChild(s); </script>
+        <div id="vid_6812e2b70d8d82d84cdbc43b" style="position: relative; width: 100%; padding: 56.25% 0 0;"> <img id="thumb_6812e2b70d8d82d84cdbc43b" src="https://images.converteai.net/b690d021-2939-43a7-8d6c-7cf2a2ef89b3/players/6812e2b70d8d82d84cdbc43b/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> <div id="backdrop_6812e2b70d8d82d84cdbc43b" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div> </div> <script type="text/javascript" id="scr_6812e2b70d8d82d84cdbc43b"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/b690d021-2939-43a7-8d6c-7cf2a2ef89b3/players/6812e2b70d8d82d84cdbc43b/player.js", s.async=!0,document.head.appendChild(s); </script>
 
         <!-- Conteúdo exibido apenas após 79s de vídeo -->
         <div id="conteudo-pos-video">
@@ -233,7 +233,7 @@
                 if (window.smartplayer && smartplayer.instances && smartplayer.instances.length > 0) {
                     const player = smartplayer.instances[0];
                     player.on('timeupdate', function() {
-                        if (player.video.currentTime >= 3) {
+                        if (player.video.currentTime >= 79) {
                             document.getElementById('conteudo-pos-video').style.display = 'block';
                         }
                     });
