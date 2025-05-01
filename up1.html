@@ -47,7 +47,7 @@
         .faq details { margin: 10px 0; }
         footer { text-align: center; margin-top: 30px; font-size: 16px; color: #666; }
         @media (max-width: 600px) { .cta-button { width: 100%; font-size: 18px; } }
-        /* Oculta todo após o vídeo até 30s assistidos */
+        /* Oculta todo após o vídeo até 99s assistidos */
         #conteudo-pos-video { display: none; }
     </style>
 </head>
@@ -90,8 +90,8 @@
 
 <script>
   // só 1x, as URLs de fluxo que seu upsell.min.js vai usar
-  let nextUpsellURL   = "https://up2.com/";
-  let nextDownsellURL = "https://dun1.com/";
+  let nextUpsellURL   = "https://frequencia.online/up2";
+  let nextDownsellURL = "https://frequencia.online/dun1";
 </script>
 <!-- Fim- BOTÕES ORIGINAIS -->
 
@@ -207,10 +207,10 @@
         // Função para redirecionar ao tentar sair ou voltar
         window.history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', function () {
-            window.location.href = 'https://dun1.com/';
+            window.location.href = 'https://frequencia.online/dun1';
         });
         window.addEventListener('beforeunload', function (e) {
-            window.location.href = 'https://dun1.com/';
+            window.location.href = 'https://frequencia.online/dun1';
         });
         </script>
 
@@ -221,7 +221,7 @@
                 if (window.smartplayer && smartplayer.instances && smartplayer.instances.length > 0) {
                     const player = smartplayer.instances[0];
                     player.on('timeupdate', function() {
-                        if (player.video.currentTime >= 3) {
+                        if (player.video.currentTime >= 9) {
                             document.getElementById('conteudo-pos-video').style.display = 'block';
                         }
                     });

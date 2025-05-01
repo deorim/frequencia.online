@@ -86,8 +86,8 @@
 
 <script>
   // só 1x, as URLs de fluxo que seu upsell.min.js vai usar
-  let nextUpsellURL   = "https://up3.com/";
-  let nextDownsellURL = "https://dun2.com/";
+  let nextUpsellURL   = "https://frequencia.online/up3";
+  let nextDownsellURL = "https://frequencia.online/dun2";
 </script>
 <!-- Fim- BOTÕES ORIGINAIS -->
 
@@ -219,10 +219,10 @@
         // Função para redirecionar ao tentar sair ou voltar
         window.history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', function () {
-            window.location.href = 'https://dun2.com/';
+            window.location.href = 'https://frequencia.online/dun2';
         });
         window.addEventListener('beforeunload', function (e) {
-            window.location.href = 'https://dun2.com/';
+            window.location.href = 'https://frequencia.online/dun2';
         });
         </script>
 
