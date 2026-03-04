@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oferta Especial</title>
+
+<link rel="preload" as="image" href="imagem.webp">
+
+<style>
+:root{
+--green:#27AF60;
+--red:#d70000;
+--text:#111;
+--max:720px;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:system-ui,-apple-system,Arial;
+background:#fff;
+color:var(--text);
+text-align:center;
+}
+
+.alert{
+background:var(--red);
+color:#fff;
+font-weight:700;
+padding:12px;
+}
+
+.wrap{
+max-width:var(--max);
+margin:auto;
+padding:16px;
+}
+
+.highlight{
+font-size:18px;
+font-weight:500;
+}
+
+.highlight strong{font-weight:800}
+
+.timer{
+margin:12px 0;
+border:2px solid #e53935;
+padding:12px;
+font-weight:800;
+color:#c62828;
+}
+
+img{
+width:100%;
+max-width:650px;
+border-radius:10px;
+display:block;
+margin:auto;
+}
+
+.social-proof{
+margin-top:20px;
+font-size:16px;
+font-weight:600;
+color:#2e7d32;
+}
+
+.urgency{
+margin-top:10px;
+font-size:16px;
+font-weight:700;
+color:#c62828;
+}
+
+@media(max-width:420px){
+.highlight{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="alert">
+ATENÇÃO – Não feche esta página para evitar falhas no envio do seu ACESSO!
+</div>
+
+<div class="wrap">
+
+<p class="highlight">
+🎉 Parabéns! Você acaba de garantir a <strong>ÚLTIMA VAGA</strong> — Veja o <strong>PRESENTE ESPECIAL</strong> liberado para você:
+</p>
+
+<div class="timer">
+Leia as Instruções Abaixo com Muita Atenção!
+</div>
+
+<img 
+src="imagem.webp"
+loading="eager"
+fetchpriority="high"
+decoding="async"
+alt="Oferta especial">
+
+<!-- 🔥 PROVA SOCIAL DINÂMICA -->
+<div class="social-proof">
+✔ Mais de <strong id="buyers">97</strong> pessoas aproveitaram essa oferta hoje
+</div>
+
+<!-- 🔥 URGÊNCIA -->
+<div class="urgency">
+⚠ Restam apenas <span id="spots">3</span> vagas com esse valor
+</div>
+
+</div>
+
+<script>
+// PROVA SOCIAL DINÂMICA
+let buyers = document.getElementById('buyers');
+let spots = document.getElementById('spots');
+
+setInterval(() => {
+let currentBuyers = parseInt(buyers.innerText);
+buyers.innerText = currentBuyers + Math.floor(Math.random() * 2);
+}, 5000);
+
+// URGÊNCIA DINÂMICA (diminui até mínimo 1)
+setInterval(() => {
+let currentSpots = parseInt(spots.innerText);
+if(currentSpots > 1){
+spots.innerText = currentSpots - 1;
+}
+}, 8000);
+</script>
+
+<div style="text-align:center" id="kiwify-upsell-djn2SN6" data-upsell-url="https://up2.com" data-downsell-url="https://dun2.com">
+          <button id="kiwify-upsell-trigger-djn2SN6" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">Sim, eu aceito essa oferta especial!</button>
+          <div id="kiwify-upsell-cancel-trigger-djn2SN6" style="margin-top:1rem;cursor:pointer;font-size:16px;text-decoration:underline;font-family:sans-serif;"></div>
+        </div><script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
+
+
+        <script>
+        // Função para redirecionar ao tentar sair ou voltar
+        window.history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function () {
+            window.location.href = 'https://pagina.com/dun2';
+        });
+        window.addEventListener('beforeunload', function (e) {
+            window.location.href = 'https://pagina.com/dun2';
+        });
+        </script>
+
+</body>
+</html>
