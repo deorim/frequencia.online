@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Oferta Especial</title>
+
+<!-- FACEBOOK PIXEL ULTRA OTIMIZADO -->
+
+<script>
+
+!function(f,b,e,v,n,t,s){
+if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;
+
+n.push=n;
+n.loaded=!0;
+n.version='2.0';
+n.queue=[];
+
+t=b.createElement(e);
+t.async=!0;
+t.src=v;
+
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)
+
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init','205696122098429');
+
+fbq('track','PageView');
+
+setTimeout(function(){
+
+fbq('track','InitiateCheckout',{
+currency:'BRL'
+});
+
+},2000);
+
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=554545444255&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- CAPTURA UTMs -->
+
+<script>
+
+var utm = {};
+var p = new URLSearchParams(location.search);
+
+['utm_source','utm_medium','utm_campaign','utm_content','utm_term']
+.forEach(function(k){
+
+if(p.get(k)) utm[k]=p.get(k);
+
+});
+
+</script>
+
+<link rel="preload" as="image" href="imagem.webp">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:#fff;
+color:#111;
+}
+
+.alert{
+background:#d70000;
+color:#fff;
+font-weight:bold;
+padding:12px;
+}
+
+.wrap{
+max-width:720px;
+margin:auto;
+padding:15px;
+}
+
+.timer{
+margin:12px 0;
+border:2px solid #e53935;
+padding:12px;
+font-weight:bold;
+color:#c62828;
+}
+
+img{
+width:100%;
+max-width:650px;
+border-radius:10px;
+}
+
+.social{
+margin-top:20px;
+font-size:16px;
+color:#2e7d32;
+font-weight:bold;
+}
+
+.urgency{
+margin-top:10px;
+color:#c62828;
+font-weight:bold;
+}
+
+.online{
+margin-top:12px;
+font-size:15px;
+color:#444;
+}
+
+button{
+
+width:100%;
+background:#19c463;
+color:#fff;
+
+border:none;
+
+padding:18px;
+
+font-size:20px;
+
+font-weight:bold;
+
+border-radius:40px;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="alert">
+ATENÇÃO – Não feche esta página para evitar falhas no envio do seu ACESSO!
+</div>
+
+<div class="wrap">
+
+<p>
+🎉 Parabéns! Você acaba de garantir a <b>ÚLTIMA VAGA</b> — veja o presente liberado:
+</p>
+
+<div class="timer">
+Leia as Instruções Abaixo com Atenção
+</div>
+
+<img src="imagem.webp">
+
+
+
+</div>
+
+<script>
+
+var buyers=document.getElementById('buyers');
+var spots=document.getElementById('spots');
+var online=document.getElementById('online');
+
+setInterval(function(){
+
+buyers.innerText=parseInt(buyers.innerText)+Math.floor(Math.random()*2);
+
+},5000);
+
+setInterval(function(){
+
+var s=parseInt(spots.innerText);
+
+if(s>1) spots.innerText=s-1;
+
+},8000);
+
+setInterval(function(){
+
+online.innerText=40+Math.floor(Math.random()*25);
+
+},4000);
+
+</script>
+
+<div style="max-width:520px;margin:auto;background:#f7f7f7;padding:25px;border-radius:12px">
+
+<button id="pixButton" onclick="copiarPix()">
+
+COPIAR CHAVE PIX
+
+</button>
+
+<p style="margin-top:25px;font-size:18px">
+
+Após o pagamento o acesso é liberado imediatamente.
+
+</p>
+
+<ul style="text-align:left;font-size:17px;line-height:1.6">
+
+<li><b>1°</b> Clique no botão acima</li>
+
+<li><b>2°</b> Abra o app do banco</li>
+
+<li><b>3°</b> Escolha pagar via PIX</li>
+
+<li><b>4°</b> Seu banco detectará automaticamente</li>
+
+</ul>
+
+<div style="margin-top:30px">
+
+🔒 Conexão segura
+
+</div>
+
+</div>
+
+<script>
+
+/* micro-engagement após 5s */
+
+setTimeout(function(){
+
+fbq('track','ViewContent');
+
+},5000);
+
+function copiarPix(){
+
+var chave="00020126890014BR.GOV.BCB.PIX0136d013d916-6c45-496f-a6d1-bb389119b1470227Receita Gelatina Bariátrica52040000530398654049.905802BR5925Natalia Vilela Cunha Sant6009SAO PAULO62140510jpW7rKjpZM6304D84A";
+
+navigator.clipboard.writeText(chave);
+
+/* eventos */
+
+fbq('track','AddPaymentInfo',{
+currency:'BRL'
+});
+
+fbq('track','Purchase',{
+value:9.90,
+currency:'BRL'
+});
+
+/* botão */
+
+var b=document.getElementById("pixButton");
+
+b.innerText="PIX COPIADO";
+
+b.style.background="#0e8f45";
+
+}
+
+</script>
+
+<script>
+
+/* bloqueio voltar */
+
+history.pushState(null,null,location.href);
+
+window.onpopstate=function(){
+
+location.href='https://pagina.com/dun2';
+
+};
+
+</script>
+
+</body>
+</html>
