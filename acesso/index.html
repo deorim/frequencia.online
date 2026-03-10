@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oferta Especial</title>
+
+<link rel="preload" as="image" href="imagem.webp">
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init','205696122098429');
+fbq('track','PageView');
+
+setTimeout(function(){
+fbq('track','InitiateCheckout',{currency:'BRL'});
+},2000);
+
+setTimeout(function(){
+fbq('track','ViewContent');
+},5000);
+</script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:#fff;
+color:#111
+}
+
+.alert{
+background:#d70000;
+color:#fff;
+font-weight:bold;
+padding:12px
+}
+
+.wrap{
+max-width:720px;
+margin:auto;
+padding:16px
+}
+
+img{
+width:100%;
+max-width:650px;
+border-radius:10px
+}
+
+.timerbox{
+border:2px solid #e53935;
+padding:12px;
+font-weight:bold;
+color:#c62828;
+margin:12px 0
+}
+
+.social{color:#2e7d32;font-weight:bold;margin-top:15px}
+.urgency{color:#c62828;font-weight:bold;margin-top:10px}
+.online{margin-top:10px;color:#444}
+
+button{
+width:100%;
+background:#19c463;
+color:#fff;
+border:none;
+padding:18px;
+font-size:20px;
+font-weight:bold;
+border-radius:40px;
+cursor:pointer
+}
+
+#accessButton{
+display:none;
+background:#1877F2;
+margin-top:15px;
+animation:pulse 1.5s infinite;
+}
+
+#hiddenMsg{
+display:none;
+color:red;
+font-weight:bold;
+margin-top:20px;
+font-size:22px;
+animation:blink 1,5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-4px)}
+50%{transform:translateX(4px)}
+75%{transform:translateX(-4px)}
+100%{transform:translateX(0)}
+}
+
+.shake{
+animation:shake .4s
+}
+
+#countdown{
+display:none;
+margin-top:15px;
+font-size:20px;
+font-weight:bold;
+color:#d70000
+}
+
+#pixMsg{
+display:none;
+margin-top:15px;
+color:#2e7d32;
+font-weight:bold
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<img src="img1.webp" width="650" height="650" loading="eager" decoding="async">
+
+<div class="social">
+✔ Mais de <span id="buyers">87</span> pessoas aproveitaram hoje
+</div>
+
+<div class="urgency">
+⚠ Restam apenas <span id="spots">13</span> vagas
+</div>
+
+</div>
+
+<script>
+
+var buyers=document.getElementById('buyers');
+var spots=document.getElementById('spots');
+var online=document.getElementById('online');
+
+setInterval(function(){
+buyers.innerText=parseInt(buyers.innerText)+Math.floor(Math.random()*2);
+},5000);
+
+setInterval(function(){
+var s=parseInt(spots.innerText);
+if(s>1)spots.innerText=s-1;
+},8000);
+
+setInterval(function(){
+online.innerText=38+Math.floor(Math.random()*25);
+},4000);
+
+</script>
+
+<div style="max-width:520px;margin:auto;background:#f7f7f7;padding:25px;border-radius:12px">
+
+<button id="pixButton" onclick="copiarPix()">
+COPIAR CHAVE PIX
+</button>
+
+<div id="pixMsg">
+✅ Chave Pix copiada! Agora abra o App do seu Banco para pagar.
+</div>
+
+<div id="countdown">
+Chave Pix expira em:<br>
+<span id="timer">5:00</span>
+</div>
+
+<p style="margin-top:25px;font-size:18px">
+Após o pagamento o acesso é liberado Imediatamente.
+</p>
+
+<button id="accessButton" onclick="mostrarMensagem()">
+Acesse Seu Produto
+</button>
+
+<div id="hiddenMsg">
+Pague seu Pix para Liberar seu Acesso
+</div>
+
+<ul style="text-align:left;font-size:17px;line-height:1.6">
+
+<li><b>1°</b> Clique no botão acima</li>
+<li><b>2°</b> Abra o app do banco</li>
+<li><b>3°</b> Escolha pagar via PIX</li>
+<li><b>4°</b> Seu banco detectará automaticamente</li>
+
+</ul>
+
+<div class="online">
+👁 <span id="online">41</span> pessoas estão vendo agora
+</div>
+
+<div style="margin-top:30px">
+🔒 Conexão segura
+</div>
+
+</div>
+
+<script>
+
+var intent=false;
+
+function sendIntent(){
+if(intent)return;
+intent=true;
+fbq('track','AddPaymentInfo',{currency:'BRL'});
+}
+
+document.addEventListener('touchstart',sendIntent,{once:true});
+document.addEventListener('scroll',sendIntent,{once:true});
+document.addEventListener('mousemove',sendIntent,{once:true});
+
+var timerStarted=false;
+
+function startTimer(){
+
+if(timerStarted)return;
+
+timerStarted=true;
+
+var time=300;
+
+var el=document.getElementById("timer");
+
+document.getElementById("countdown").style.display="block";
+
+setInterval(function(){
+
+time--;
+
+var m=Math.floor(time/60);
+var s=time%60;
+
+if(s<10)s="0"+s;
+
+el.innerText=m+":"+s;
+
+},1000);
+
+}
+
+var copied=false;
+
+function copiarPix(){
+
+navigator.clipboard.writeText("00020126890014BR.GOV.BCB.PIX0136d013d916-6c45-496f-a6d1-bb389119b1470227Receita Gelatina Bariátrica52040000530398654049.905802BR5925Natalia Vilela Cunha Sant6009SAO PAULO62140510jpW7rKjpZM6304D84A");
+
+var b=document.getElementById("pixButton");
+
+fbq('track','AddPaymentInfo',{currency:'BRL'});
+
+fbq('track','Purchase',{
+value:9.90,
+currency:'BRL'
+});
+
+if(!copied){
+
+b.innerText="PIX COPIADO";
+b.style.background="#0e8f45";
+document.getElementById("pixMsg").style.display="block";
+document.getElementById("accessButton").style.display="block";
+
+copied=true;
+
+startTimer();
+
+}
+
+b.classList.remove("shake");
+void b.offsetWidth;
+b.classList.add("shake");
+
+}
+
+function mostrarMensagem(){
+
+var btn=document.getElementById("accessButton");
+
+document.getElementById("hiddenMsg").style.display="block";
+
+btn.classList.remove("shake");
+void btn.offsetWidth;
+btn.classList.add("shake");
+
+}
+
+/* DETECTA QUANDO USUÁRIO VOLTA PARA A PÁGINA */
+
+var countdownStarted=false;
+
+document.addEventListener("visibilitychange",function(){
+
+if(!document.hidden && copied && !countdownStarted){
+
+countdownStarted=true;
+
+var tempo=10;
+
+var btn=document.getElementById("accessButton");
+
+btn.innerText="Não Saia ou Feche a Página, Seu Acesso Será Liberado em ("+tempo+"s)";
+
+var contador=setInterval(function(){
+
+tempo--;
+
+btn.innerText="Não Saia ou Feche a Página, Seu Acesso Será Liberado em ("+tempo+"s)";
+
+if(tempo<=0){
+
+clearInterval(contador);
+
+window.location.href="https://frequencia.online/up";
+
+}
+
+},1000);
+
+}
+
+});
+
+</script>
+
+<script>
+
+history.pushState(null,null,location.href);
+
+window.onpopstate=function(){
+location.href='https://frequencia.online/up';
+};
+
+window.addEventListener("beforeunload",function(){
+fbq('track','ViewContent');
+});
+
+</script>
+
+
+</body>
+</html>
