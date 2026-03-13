@@ -16,7 +16,7 @@
 ></script>
 
 <script>
-  window.pixelId = "389529610184487";
+  window.pixelId = "1234567890987654321";
   var a = document.createElement("script");
   a.setAttribute("async", "");
   a.setAttribute("defer", "");
@@ -30,22 +30,16 @@
 var destino="https://pay.cakto.com.br/363kh2p_780660";
 
 function redirecionar(){
-
-var params=window.location.search;
-
-if(params){
-location.replace(destino+params);
-}else{
-location.replace(destino);
+  var params=window.location.search;
+  location.replace(destino+params);
 }
 
-}
+window.addEventListener("load",function(){
 
-if(document.readyState==="complete"){
-redirecionar();
-}else{
-window.addEventListener("load",redirecionar);
-}
+  /* pequeno tempo para pixel disparar */
+  setTimeout(redirecionar,300);
+
+});
 
 })();
 </script>
