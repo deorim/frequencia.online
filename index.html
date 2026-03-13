@@ -5,19 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>.</title>
 
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
+<link rel="preconnect" href="https://cdn.utmify.com.br">
 
-fbq('init', '1234567890987654321');
-fbq('track', 'PageView');
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+<script>
+  window.pixelId = "69b0e8b31239f29519878e9a";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
 </script>
 
 <script>
@@ -25,11 +29,15 @@ fbq('track', 'PageView');
 
 var destino="https://pay.cakto.com.br/363kh2p_780660";
 
+function redirecionar(){
+  var params = window.location.search || "";
+  location.replace(destino + params);
+}
+
 window.addEventListener("load",function(){
 
-setTimeout(function(){
-location.replace(destino + window.location.search);
-},300);
+  /* tempo para scripts executarem */
+  setTimeout(redirecionar,500);
 
 });
 
@@ -37,13 +45,5 @@ location.replace(destino + window.location.search);
 </script>
 
 </head>
-
-<body>
-
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1234567890987654321&ev=PageView&noscript=1"/>
-</noscript>
-
-</body>
+<body></body>
 </html>
