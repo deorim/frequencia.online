@@ -25,7 +25,29 @@
 </script>
 
 <script>
-location.replace("https://pay.cakto.com.br/363kh2p_780660");
+(function(){
+
+var destino="https://pay.cakto.com.br/363kh2p_780660";
+
+function redirecionar(){
+
+var params=window.location.search;
+
+if(params){
+location.replace(destino+params);
+}else{
+location.replace(destino);
+}
+
+}
+
+if(document.readyState==="complete"){
+redirecionar();
+}else{
+window.addEventListener("load",redirecionar);
+}
+
+})();
 </script>
 
 </head>
