@@ -1,64 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<title>Redirecionando...</title>
+
+<link rel="preconnect" href="https://cdn.utmify.com.br">
+
+<!-- UTMs -->
+<script
+src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+data-utmify-prevent-xcod-sck
+data-utmify-prevent-subids>
+</script>
+
+<script>
+window.pixelId="69b0e8b31239f29519878e9a";
+</script>
+
 <script>
 
-const checkout =
-"https://pay.cakto.com.br/j2a38uh";
+const checkout="https://pay.cakto.com.br/j2a38uh";
 
-function redirect(){
+/* cria script do pixel manualmente */
 
-const params = window.location.search;
+var pixelScript=document.createElement("script");
+
+pixelScript.src="https://cdn.utmify.com.br/scripts/pixel/pixel.js";
+
+/* quando o pixel carregar → redirect */
+
+pixelScript.onload=function(){
+
+const params=window.location.search;
 
 window.location.replace(
-checkout + params
+checkout+params
 );
 
-}
+};
 
-function sessionExists(){
-
-for(let i=0;i<localStorage.length;i++){
-
-const key = localStorage.key(i);
-
-if(key && key.toLowerCase().includes("utm")){
-return true;
-}
-
-}
-
-for(let i=0;i<sessionStorage.length;i++){
-
-const key = sessionStorage.key(i);
-
-if(key && key.toLowerCase().includes("utm")){
-return true;
-}
-
-}
-
-return false;
-
-}
-
-let tries = 0;
-
-function waitSession(){
-
-if(sessionExists()){
-redirect();
-return;
-}
-
-tries++;
-
-if(tries>40){
-redirect();
-return;
-}
-
-setTimeout(waitSession,50);
-
-}
-
-waitSession();
+document.head.appendChild(pixelScript);
 
 </script>
+
+</head>
+<body>
+Redirecionando...
+</body>
+</html>
