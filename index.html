@@ -1,59 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-
-<meta charset="UTF-8">
-<title>Redirecionando...</title>
-
-<!-- acelera conexão com CDN -->
-<link rel="preconnect" href="https://cdn.utmify.com.br">
-<link rel="dns-prefetch" href="//cdn.utmify.com.br">
-
-<!-- script que captura UTMs -->
-<script
-src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-data-utmify-prevent-xcod-sck
-data-utmify-prevent-subids
-></script>
-
-<!-- define pixel -->
-<script>
-window.pixelId="69b0e8b31239f29519878e9a";
-</script>
-
-<!-- carrega pixel -->
-<script src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"></script>
-
 <script>
 
-/* URL do checkout */
-
-const checkoutBase =
+const checkout =
 "https://pay.cakto.com.br/j2a38uh";
 
-/* pega UTMs */
+function redirect(){
 
 const params = window.location.search;
 
-/* redirect */
-
-function irCheckout(){
-
 window.location.replace(
-checkoutBase + params
+checkout + params
 );
 
 }
 
-/* verifica se sessão utmify existe */
-
-function sessaoCriada(){
-
-try{
+function sessionExists(){
 
 for(let i=0;i<localStorage.length;i++){
 
-let key = localStorage.key(i);
+const key = localStorage.key(i);
 
 if(key && key.toLowerCase().includes("utm")){
 return true;
@@ -63,7 +27,7 @@ return true;
 
 for(let i=0;i<sessionStorage.length;i++){
 
-let key = sessionStorage.key(i);
+const key = sessionStorage.key(i);
 
 if(key && key.toLowerCase().includes("utm")){
 return true;
@@ -71,47 +35,30 @@ return true;
 
 }
 
-}catch(e){}
-
 return false;
 
 }
 
-/* espera sessão existir */
+let tries = 0;
 
-let tentativas = 0;
+function waitSession(){
 
-function esperarSessao(){
-
-if(sessaoCriada()){
-irCheckout();
+if(sessionExists()){
+redirect();
 return;
 }
 
-tentativas++;
+tries++;
 
-/* fallback máximo ~2s */
-
-if(tentativas > 40){
-irCheckout();
+if(tries>40){
+redirect();
 return;
 }
 
-setTimeout(esperarSessao,50);
+setTimeout(waitSession,50);
 
 }
 
-/* inicia verificação */
-
-esperarSessao();
+waitSession();
 
 </script>
-
-</head>
-
-<body>
-
-Redirecionando...
-
-</body>
-</html>
