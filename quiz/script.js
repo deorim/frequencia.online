@@ -344,9 +344,10 @@ function createButton(component, container, step) {
     }
 
     if (actionType === "redirect" && url) {
-      window.location.href = url;
-      return;
-    }
+  const finalUrl = url + window.location.search;
+  window.location.href = finalUrl;
+  return;
+}
 
     if (actionType === "nextStep" && url && url !== "next") {
       goToDestination(url);
