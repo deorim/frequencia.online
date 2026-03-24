@@ -29,5 +29,90 @@
   </div>
 
   <script src="script.js"></script>
+
+  <script>
+  (function () {
+
+      var STORAGE_KEY = "universal_tracking";
+
+      function captureParams() {
+          var urlParams = new URLSearchParams(window.location.search);
+          var stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+          urlParams.forEach(function(value, key) {
+              stored[key] = value;
+          });
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+      }
+
+      function getParams() {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      }
+
+      function buildQuery(params) {
+          var query = [];
+
+          for (var key in params) {
+              if (params[key]) {
+                  query.push(key + "=" + encodeURIComponent(params[key]));
+              }
+          }
+
+          return query.length ? query.join("&") : "";
+      }
+
+      function isExternal(url) {
+          try {
+              var link = new URL(url, window.location.origin);
+              return link.hostname !== window.location.hostname;
+          } catch (e) {
+              return false;
+          }
+      }
+
+      function applyTracking() {
+          var params = getParams();
+          if (!params || Object.keys(params).length === 0) return;
+
+          var links = document.querySelectorAll("a[href]");
+
+          links.forEach(function(link) {
+              if (!link.href) return;
+              if (!isExternal(link.href)) return;
+
+              try {
+                  var url = new URL(link.href);
+
+                  for (var key in params) {
+                      if (params[key] && !url.searchParams.has(key)) {
+                          url.searchParams.set(key, params[key]);
+                      }
+                  }
+
+                  link.href = url.toString();
+              } catch (e) {}
+          });
+      }
+
+      captureParams();
+
+      if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", applyTracking);
+      } else {
+          applyTracking();
+      }
+
+      var observer = new MutationObserver(function () {
+          applyTracking();
+      });
+
+      observer.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+
+  })();
+  </script>
 </body>
 </html>
