@@ -1,41 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gelatina Bariátrica</title>
-  <link rel="stylesheet" href="style.css">
-
-  <script
-    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-    data-utmify-prevent-xcod-sck
-    data-utmify-prevent-subids
-    async
-    defer
-  ></script>
-
-  <script>
-    window.pixelId = "69b0ee02780df3ca48ed1f5c";
-    var a = document.createElement("script");
-    a.setAttribute("async", "");
-    a.setAttribute("defer", "");
-    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-    document.head.appendChild(a);
-  </script>
-</head>
-<body>
-  <div id="app">
-    <div id="quiz"></div>
-  </div>
-
-  <script src="script.js"></script>
-
-  <script>
+<script>
 (function () {
 
     var STORAGE_KEY = "universal_tracking";
+    var CHECKOUT_DOMAIN = "go.pepperpay.com.br";
 
-    // 🔹 CAPTURA TODOS OS PARÂMETROS (QUALQUER UM)
     function captureParams() {
         var urlParams = new URLSearchParams(window.location.search);
         var stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -47,70 +15,70 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
     }
 
-    // 🔹 RECUPERA
     function getParams() {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
     }
 
-    // 🔹 MONTA QUERY STRING
-    function buildQuery(params) {
-        var query = [];
-
-        for (var key in params) {
-            if (params[key]) {
-                query.push(key + "=" + encodeURIComponent(params[key]));
-            }
+    function appendParamsToUrl(url, params) {
+        try {
+            var parsedUrl = new URL(url);
+            Object.keys(params).forEach(function(key) {
+                if (params[key] && !parsedUrl.searchParams.has(key)) {
+                    parsedUrl.searchParams.set(key, params[key]);
+                }
+            });
+            return parsedUrl.toString();
+        } catch (e) {
+            return url;
         }
-
-        return query.length ? query.join("&") : "";
     }
 
-    // 🔹 VERIFICA SE É LINK EXTERNO (CHECKOUT)
-    function isExternal(url) {
+    function isPepperPay(url) {
         try {
-            var link = new URL(url);
-            return link.hostname !== window.location.hostname;
+            var parsedUrl = new URL(url, window.location.origin);
+            return parsedUrl.hostname === CHECKOUT_DOMAIN;
         } catch (e) {
             return false;
         }
     }
 
-    // 🔹 APLICA EM QUALQUER CHECKOUT
     function applyTracking() {
         var params = getParams();
         if (!params || Object.keys(params).length === 0) return;
-
-        var queryString = buildQuery(params);
 
         var links = document.querySelectorAll("a");
 
         links.forEach(function(link) {
             if (!link.href) return;
 
-            // 🔥 REGRA UNIVERSAL:
-            // só aplica em links externos (checkout)
-            if (isExternal(link.href)) {
-                try {
-                    var url = new URL(link.href);
-
-                    // evita duplicação
-                    if (url.search) {
-                        link.href = url.href + "&" + queryString;
-                    } else {
-                        link.href = url.href + "?" + queryString;
-                    }
-
-                } catch (e) {}
+            if (isPepperPay(link.href)) {
+                link.href = appendParamsToUrl(link.href, params);
             }
         });
     }
 
-    // 🚀 EXECUÇÃO IMEDIATA (CRÍTICO)
+    function handleDirectClicks() {
+        document.addEventListener("click", function(e) {
+            var target = e.target.closest("a");
+
+            if (!target || !target.href) return;
+
+            var params = getParams();
+            if (!params || Object.keys(params).length === 0) return;
+
+            if (isPepperPay(target.href)) {
+                target.href = appendParamsToUrl(target.href, params);
+            }
+        }, true);
+    }
+
     captureParams();
 
-    document.addEventListener("DOMContentLoaded", applyTracking);
+    document.addEventListener("DOMContentLoaded", function() {
+        applyTracking();
+        handleDirectClicks();
+    });
 
-    // 🔄 QUIZ DINÂMICO / SPA
     var observer = new MutationObserver(function () {
         applyTracking();
     });
@@ -122,5 +90,3 @@
 
 })();
 </script>
-</body>
-</html>
