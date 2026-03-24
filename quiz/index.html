@@ -1,33 +1,39 @@
 <script>
 (function () {
-
     var STORAGE_KEY = "universal_tracking";
-    var CHECKOUT_DOMAIN = "go.pepperpay.com.br";
 
     function captureParams() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        try {
+            var urlParams = new URLSearchParams(window.location.search);
+            var stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
-        urlParams.forEach(function(value, key) {
-            stored[key] = value;
-        });
+            urlParams.forEach(function(value, key) {
+                stored[key] = value;
+            });
 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+        } catch (e) {}
     }
 
     function getParams() {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (e) {
+            return {};
+        }
     }
 
-    function appendParamsToUrl(url, params) {
+    function applyParamsToUrl(url, params) {
         try {
-            var parsedUrl = new URL(url);
-            Object.keys(params).forEach(function(key) {
-                if (params[key] && !parsedUrl.searchParams.has(key)) {
-                    parsedUrl.searchParams.set(key, params[key]);
+            var parsed = new URL(url, window.location.origin);
+
+            for (var key in params) {
+                if (params[key] && !parsed.searchParams.has(key)) {
+                    parsed.searchParams.set(key, params[key]);
                 }
-            });
-            return parsedUrl.toString();
+            }
+
+            return parsed.toString();
         } catch (e) {
             return url;
         }
@@ -35,8 +41,8 @@
 
     function isPepperPay(url) {
         try {
-            var parsedUrl = new URL(url, window.location.origin);
-            return parsedUrl.hostname === CHECKOUT_DOMAIN;
+            var parsed = new URL(url, window.location.origin);
+            return parsed.hostname === "go.pepperpay.com.br";
         } catch (e) {
             return false;
         }
@@ -52,41 +58,19 @@
             if (!link.href) return;
 
             if (isPepperPay(link.href)) {
-                link.href = appendParamsToUrl(link.href, params);
+                link.href = applyParamsToUrl(link.href, params);
             }
         });
     }
 
-    function handleDirectClicks() {
-        document.addEventListener("click", function(e) {
-            var target = e.target.closest("a");
-
-            if (!target || !target.href) return;
-
-            var params = getParams();
-            if (!params || Object.keys(params).length === 0) return;
-
-            if (isPepperPay(target.href)) {
-                target.href = appendParamsToUrl(target.href, params);
-            }
-        }, true);
-    }
-
     captureParams();
 
-    document.addEventListener("DOMContentLoaded", function() {
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", applyTracking);
+    } else {
         applyTracking();
-        handleDirectClicks();
-    });
+    }
 
-    var observer = new MutationObserver(function () {
-        applyTracking();
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-
+    setInterval(applyTracking, 1000);
 })();
 </script>
